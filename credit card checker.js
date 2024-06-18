@@ -101,6 +101,26 @@ let idInvalidCardCompanies = faultyNumsArr => {
     return companies;
 }
 
-console.log(idInvalidCardCompanies(findInvalidCards(batch)));
+//console.log(idInvalidCardCompanies(findInvalidCards(batch)));
 
+// this function generates a valid cred card 
+const generateValidCard = () => {
 
+    //generate random 16 digit card number
+    let cardNumGenerator = Math.floor(Math.random() * Math.pow(10, 16));
+
+    //convert the number to an array
+    let credCardArray = cardNumGenerator.toString().split("");
+
+    //while the newly generated card number is not valid, generate a new one.
+    while (validateCred(credCardArray) === false) {
+        cardNumGenerator = Math.floor(Math.random() * Math.pow(10, 16));
+        credCardArray = cardNumGenerator.toString().split("");
+    }
+    return credCardArray;
+}
+
+//console.log(credCardArray);
+//console.log(validateCred(credCardArray));
+console.log(generateValidCard());
+console.log(validateCred(generateValidCard()))
